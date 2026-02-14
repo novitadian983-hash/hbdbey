@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday 🤍</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    background:linear-gradient(135deg,#f5efe6,#f6d6e0,#e9c6a5,#faf7f2);
+    font-family:'Poppins',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+/* BALON */
+.balloon{
+    position:absolute;
+    bottom:-120px;
+    width:55px;
+    height:70px;
+    border-radius:50%;
+    animation:float 9s infinite ease-in;
+}
+.balloon::after{
+    content:"";
+    width:2px;
+    height:40px;
+    background:#aaa;
+    position:absolute;
+    top:70px;
+    left:50%;
+}
+@keyframes float{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-130vh);}
+}
+
+/* WRAPPER */
+.wrapper{
+    text-align:center;
+    z-index:2;
+}
+
+/* KUE */
+.cake{
+    width:180px;
+    margin:0 auto 18px;
+}
+.layer{
+    height:36px;
+    background:#f3b5a6;
+    margin:6px 0;
+    border-radius:10px;
+}
+.candle{
+    width:6px;
+    height:36px;
+    background:#fff;
+    margin:0 auto;
+}
+.flame{
+    width:14px;
+    height:14px;
+    background:orange;
+    border-radius:50%;
+    margin:-8px auto 6px;
+    animation:flicker 1s infinite;
+}
+@keyframes flicker{
+    0%{opacity:1;}
+    50%{opacity:.6;}
+    100%{opacity:1;}
+}
+
+/* AMPL0P */
+.envelope{
+    width:520px;
+    height:320px;
+    background:#fffaf4;
+    position:relative;
+    border-radius:18px;
+    box-shadow:0 22px 45px rgba(0,0,0,.18);
+    cursor:pointer;
+}
+.flap{
+    position:absolute;
+    top:0;
+    width:100%;
+    height:100%;
+    background:#f2b6c2;
+    clip-path: polygon(0 0,100% 0,50% 50%);
+    transform-origin:top;
+    transition:.9s;
+}
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+/* SURAT */
+.letter{
+    position:absolute;
+    top:22px;
+    left:22px;
+    right:22px;
+    bottom:22px;
+    background:#ffffff;
+    border-radius:14px;
+    padding:24px;
+    transform:translateY(120%);
+    transition:.9s;
+    overflow-y:auto;
+}
+.envelope.open .letter{
+    transform:translateY(0);
+}
+
+h2{
+    font-family:'Playfair Display',serif;
+    color:#b26a7c;
+}
+
+/* TOMBOL MUSIK */
+.music-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    padding:12px 22px;
+    background:#f2b6c2;
+    border:none;
+    border-radius:30px;
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+.music-btn:hover{
+    opacity:.9;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BALON -->
+<script>
+for(let i=0;i<14;i++){
+    let b=document.createElement("div");
+    b.className="balloon";
+    b.style.left=Math.random()*100+"%";
+    b.style.background=["#f2b6c2","#f3c7a4","#fff1e6"][Math.floor(Math.random()*3)];
+    b.style.animationDuration=7+Math.random()*4+"s";
+    document.body.appendChild(b);
+}
+</script>
+
+<div class="wrapper">
+
+    <!-- KUE -->
+    <div class="cake">
+        <div class="candle"></div>
+        <div class="flame"></div>
+        <div class="layer"></div>
+        <div class="layer"></div>
+        <div class="layer"></div>
+    </div>
+
+    <!-- AMPL0P -->
+    <div class="envelope" onclick="this.classList.toggle('open')">
+        <div class="flap"></div>
+
+        <div class="letter">
+            <h2>Happy Birthday 🤍</h2>
+            <p>
+            Hari ini hari bahagia kamu
+            Semoga doa dan harapan kamu terus langitkan
+            Semoga doa yang kamu langitkan akan kamu dapatkan
+            Terima kasih telah tumbuh menjadi sosok yang kuat
+            
+            Aku harap, kamu selalu sehat dan bahagia
+            Semoga kamu selalu diiringi kebaikan dan kebahagiaan
+            Semoga jalanmu dimudahkan dan dimenangkan
+            Semoga kamu selalu dikelilingi orang-orang baik
+
+            Percayalah, kamu berharga
+            Kamu adalah pembawa kebahagiaan
+            Kamu pantas dicintai dan disayangi
+            Kamu juga pantas dibanggakan dan dibahagiakan
+
+            Apapun yang terjadi
+            Tolong berbanggalah pada diri kamu
+            Sayangi diri kamu diatas kamu menyayangi orang lain
+            Bahagiakan dan cintai diri kamu ya, karena kamu pantas untuk itu.
+    
+            </p>
+            <p style="margin-top:20px;">💐 with full love
+                -d 💐</p>
+        </div>
+    </div>
+</div>
+
+<!-- MUSIK -->
+<audio id="music" loop>
+    <source src="https://youtu.be/J0vKQWQXa0Y?si=jxmA1eBSxbXQrS_W">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">🔊 Music ON</button>
+
+<script>
+let isPlaying = false;
+const music = document.getElementById("music");
+const btn = document.getElementById("musicBtn");
+
+function toggleMusic(){
+    if(isPlaying){
+        music.pause();
+        btn.innerHTML = "🔊 Music ON";
+    }else{
+        music.play();
+        btn.innerHTML = "🔇 Music OFF";
+    }
+    isPlaying = !isPlaying;
+}
+</script>
+
+</body>
+</html>
